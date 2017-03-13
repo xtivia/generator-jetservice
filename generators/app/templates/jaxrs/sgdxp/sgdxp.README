@@ -1,0 +1,9 @@
+For runtime use you will need to install the Service Guard module in your local DXP environment.
+
+The JAR file is included in this folder as sgdxp.jar.
+
+The simplest approach for installing the JAR is to copy it into the deploy directory
+of your DXP installation.
+
+(If you prefer, Service Guard can also be installed using the DXP gogo shell with the URL
+value of http://jcenter.bintray.com/com/xtivia/tools/sgdxp/1.0.0/sgdxp-1.0.0.jar).

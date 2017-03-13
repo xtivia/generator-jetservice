@@ -1,0 +1,20 @@
+{
+  "name": "<%=serviceName%>",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Javascript Service for Liferay 7/DXP",
+  "author": {
+    "name": "Michael Freeman"
+  },
+  "dependencies": {
+  },
+  "devDependencies" : {
+    "gulp"              : "^3.9.1",
+	"gulp-zip"          : "^3.2.0",
+	"gulp-add-src"      : "^0.2.0",
+	"gulp-replace-task" : "^0.11.0",
+    "gulp-clean"        : "^0.3.2",
+	"through2"          : "^2.0.1",
+	"gogo-shell"        : "^0.0.5"
+  }
+}

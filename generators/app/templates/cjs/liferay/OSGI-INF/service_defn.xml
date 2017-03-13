@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="@@serviceName" immediate="true" activate="start" deactivate="stop">
+  <implementation class="org.jetservice.JetService"/>
+  <service>
+    <provide interface="org.xjetservice.JetService"/>
+  </service>
+  <reference name="HttpService" interface="org.osgi.service.http.HttpService" bind="setHttpService"/>
+  <reference name="UserService" interface="com.liferay.portal.kernel.service.UserLocalService" bind="setUserLocalService"/>
+  <reference name="OrgService"  interface="com.liferay.portal.kernel.service.OrganizationLocalService" bind="setOrganizationLocalService"/>
+  <reference name="RoleService" interface="com.liferay.portal.kernel.service.RoleLocalService" bind="setRoleLocalService"/>
+  <property name="org.jetservice.runtime.service-file" type="String" value="@@serviceFileName"/>
+  <property name="org.jetservice.runtime.service-path" type="String" value="@@servicePath"/>
+</scr:component>
