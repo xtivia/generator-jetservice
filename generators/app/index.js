@@ -39,7 +39,7 @@ module.exports = yeoman.generators.Base.extend({
 				required: true,
 				name: 'servicePath',
 				message: 'Enter service URI path',
-				default: '/svcs'+ randomSuffix.toString(),
+				default: '/svc'+ randomSuffix.toString(),
 				validate : function(input) {
             if (input.indexOf(' ') != -1) {
               return "Spaces are not permitted in the service path."
@@ -47,15 +47,15 @@ module.exports = yeoman.generators.Base.extend({
               return "Path must begin with a slash, e.g. /org.jetservice.abcd"
             } else return true;
 				  }
-			  },
-        {
-        required: true,
-        name: 'framework',
-        type: 'list',
-        message: 'Service Framework?',
-        choices: ['JAXRS','CommonJS'],
-        default: 'JAXRS'
-        }
+			  }
+        // {
+        // required: true,
+        // name: 'framework',
+        // type: 'list',
+        // message: 'Service Framework?',
+        // choices: ['JAXRS','CommonJS'],
+        // default: 'JAXRS'
+        // }
 		];
 
     // --- set up JAX-RS prompts ----
@@ -71,6 +71,7 @@ module.exports = yeoman.generators.Base.extend({
 	  
     app: function () {
 
+      this.props.framework = 'JAXRS';
       this.props.serviceFileName = 'index.js';
 	    this.config.set(this.props);
 
