@@ -7,9 +7,9 @@ module.exports = {
         type: 'confirm',
         default: false,
         message: 'Include Service Guard?',
-        when: function (response) {
-          return response.framework == 'JAXRS';
-        }
+        // when: function (response) {
+        //   return response.framework == 'JAXRS';
+        // }
       };
       prompts.push(sgdxpPrompt);
     },

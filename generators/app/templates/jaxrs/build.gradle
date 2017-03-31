@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.dm.gradle:gradle-bundle-plugin:0.8.5'
+        classpath 'org.dm.gradle:gradle-bundle-plugin:0.9.0'
         classpath files('buildlibs/deploy.jar')
     }
 }
@@ -17,6 +17,13 @@ repositories {
 
 apply plugin: 'java'
 apply plugin: 'org.dm.bundle'
+
+// load some properties from the main config file
+import groovy.json.JsonSlurper
+def propsSlurper = new JsonSlurper()
+def propsJson = propsSlurper.parse file('.yo-rc.json')
+def serviceName = propsJson['generator-jetservice'].serviceName
+def serviceTitle = propsJson['generator-jetservice'].serviceTitle
 
 /*
  This build script uses 2 configurations including the new 'compileOnly' introduced in Grade 2.12
@@ -65,7 +72,9 @@ def includeResource() {
 bundle {
   instructions << [
     'Bundle-Version'      : '1.0.0',
-    'Bundle-SymbolicName' : rootProject.name,
+    'Bundle-Name'         : serviceTitle,
+	'Bundle-SymbolicName' : serviceName,
+	'Bundle-Description'  : serviceTitle,
     '-metatype'           : '*',
     '-buildpath'          : 'osgi.annotation; version=6.0.1,osgi.core; version=6.0,osgi.cmpn; version=6.0',
     'Import-Package'      : 'javax.servlet.http,javax.servlet,*',
