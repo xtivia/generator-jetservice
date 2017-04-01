@@ -20,7 +20,7 @@ import aQute.bnd.annotation.metatype.Meta;
 		factory = true,
 		id = "<%=serviceName%>.configuration",
 		localization = "content/Language", 
-		name = "<%=serviceName%>"
+		name = "<%=serviceTitle%>"
 )		
 public interface RestApplicationConfiguration {
 	
