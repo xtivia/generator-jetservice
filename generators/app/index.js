@@ -7,15 +7,15 @@ var cjs = require('./cjs');
 var jaxrs = require('./jaxrs');
 
 module.exports = class extends Generator {
+  
+  initializing() {
+    this.log(yosay('Welcome to the JetService generator for \nLiferay 7/DXP!'));
+  }
 	
   prompting() {
-	  
-    var done = this.async();
-		
-		this.log(yosay('Welcome to the JetService generator for \nLiferay 7/DXP!'));
+
+    var self = this;
     
-		var self = this;
-		
 		// generate a random number to append to service name
 		// this (probably) keeps those who are just blindly hitting enter
 		// from overwriting previous efforts
@@ -53,47 +53,21 @@ module.exports = class extends Generator {
               } else return true;
           }
 			  }
-        // {
-        // required: true,
-        // name: 'framework',
-        // type: 'list',
-        // message: 'Service Framework?',
-        // choices: ['JAXRS','CommonJS'],
-        // default: 'JAXRS'
-        // }
 		];
 
-    // --- set up JAX-RS prompts ----
-    jaxrs.addPrompts(prompts);
-		
-		this.prompt(prompts, function (props) {
-		  this.props = props;
-		  done();
-		}.bind(this));
-  }
-
-  writing() {
-	  
-    this.props.framework = 'JAXRS';
-    this.props.serviceFileName = 'index.js';
-    this.config.set(this.props);
-
-    if (this.props.framework == 'CommonJS') {
-      cjs.generate(this);
-    }
-
-    if (this.props.framework == 'JAXRS') {
-      jaxrs.generate(this);
-    }
+    return this.prompt(prompts)
+			.then((answers) => {
+				self.props = answers;
+				self.config.set(self.props);
+			});
     
   }
 
-  install() {
-
-    if (this.props.framework == 'CommonJS') {
-      this.log("Initializing the project--this may take a few minutes...");
-      this.npmInstall();
-    }
+  writing() {
+    this.props.framework = 'JAXRS';
+    this.props.serviceFileName = 'index.js';
+    this.config.set(this.props);
+    jaxrs.generate(this);
   }
   
 }
