@@ -24,7 +24,6 @@ import javax.ws.rs.core.Response.ResponseBuilder;
  */
 
 @Path("/people")
-
 public class PeopleResource {
 	
 	/*

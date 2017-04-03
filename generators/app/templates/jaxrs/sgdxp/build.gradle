@@ -19,6 +19,13 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'org.dm.bundle'
 
+// load some properties from the main config file
+import groovy.json.JsonSlurper
+def propsSlurper = new JsonSlurper()
+def propsJson = propsSlurper.parse file('.yo-rc.json')
+def serviceName = propsJson['generator-jetservice'].serviceName
+def serviceTitle = propsJson['generator-jetservice'].serviceTitle
+
 /*
  This build script uses 2 configurations including the new 'compileOnly' introduced in Grade 2.12
  
@@ -30,14 +37,14 @@ apply plugin: 'org.dm.bundle'
  */
 dependencies {
 	compileOnly group: "com.liferay.portal",  name: "com.liferay.portal.kernel",                 version: "2.0.0"
-    compileOnly group: 'com.liferay',         name: 'com.liferay.portal.configuration.metatype', version: '2.0.0'
+  compileOnly group: 'com.liferay',         name: 'com.liferay.portal.configuration.metatype', version: '2.0.0'
 	compileOnly group: 'javax.ws.rs',         name: 'javax.ws.rs-api',                           version: '2.0.1'
 	compileOnly group: "javax.portlet",       name: "portlet-api",                               version: "2.0"
 	compileOnly group: "javax.servlet",       name: "servlet-api",                               version: "2.5"
 	compileOnly group: "biz.aQute.bnd",       name: "biz.aQute.bndlib",                          version: "3.1.0"
 	compileOnly group: "org.osgi",            name: "org.osgi.compendium",                       version: "5.0.0"
-    compileOnly group: 'org.slf4j',           name: 'slf4j-api',                                 version: '1.7.21'
-    compileOnly group: 'com.xtivia.tools',    name: 'sgdxp',                                     version: '1.0.0'
+  compileOnly group: 'org.slf4j',           name: 'slf4j-api',                                 version: '1.7.21'
+  compileOnly group: 'com.xtivia.tools',    name: 'sgdxp',                                     version: '1.0.0'
 
 	// any dependencies in the 'compile' configuration WILL be included in the generated JAR. Use the
 	// 'compileOnly' configuration for compiling with items available inside the OSGi container
@@ -68,7 +75,9 @@ def includeResource() {
 bundle {
   instructions << [
     'Bundle-Version'      : '1.0.0',
-    'Bundle-SymbolicName' : rootProject.name,
+    'Bundle-Name'         : serviceTitle,
+	  'Bundle-SymbolicName' : serviceName,
+	  'Bundle-Description'  : serviceTitle,
     '-metatype'           : '*',
     '-buildpath'          : 'osgi.annotation; version=6.0.1,osgi.core; version=6.0,osgi.cmpn; version=6.0',
     'Import-Package'      : 'javax.servlet.http,javax.servlet,*',

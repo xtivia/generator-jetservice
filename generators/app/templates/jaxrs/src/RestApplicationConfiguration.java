@@ -24,7 +24,7 @@ import aQute.bnd.annotation.metatype.Meta;
 )		
 public interface RestApplicationConfiguration {
 	
-	@Meta.AD(description= "Information", deflt="unknown", required=false)
+	@Meta.AD(description= "Information", deflt="no info available", required=false)
 	public String info();
 
 	@Meta.AD(description= "Ranking", deflt="5", required=false)

@@ -20,11 +20,11 @@ import aQute.bnd.annotation.metatype.Meta;
 		factory = true,
 		id = "<%=serviceName%>.configuration",
 		localization = "content/Language", 
-		name = "<%=serviceName%>"
+		name = "<%=serviceTitle%>"
 )		
 public interface RestApplicationConfiguration {
 	
-	@Meta.AD(description= "Information", deflt="unknown", required=false)
+	@Meta.AD(description= "Information", deflt="No info available", required=false)
 	public String info();
 
 	@Meta.AD(description= "Ranking", deflt="5", required=false)

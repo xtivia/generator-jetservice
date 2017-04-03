@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.service.UserLocalService;
  */
 @Component(immediate=true, 
            service=Application.class,
-           configurationPid = "<%=serviceName%>",
+           configurationPid = "<%=serviceName%>.configuration",
            configurationPolicy = ConfigurationPolicy.OPTIONAL,
            property={"jaxrs.application=true"} 
 )
@@ -38,6 +38,7 @@ public class RestApplication extends Application {
 
         // add our REST endpoints (resources)
         this.singletons.add(new PeopleResource());
+		this.singletons.add(new EchoResource(this));
     }
 	
 	/*
@@ -88,7 +89,11 @@ public class RestApplication extends Application {
 		}
 	}
 	
+	public RestApplicationConfiguration getConfiguration() {
+		return this._restConfiguration;
+	}
 	private RestApplicationConfiguration _restConfiguration;
-    private Set<Object> singletons = new HashSet<Object>();
+    
+	private Set<Object> singletons = new HashSet<Object>();
     private UserLocalService _userLocalService;
 }
