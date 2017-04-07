@@ -6,7 +6,7 @@ var path = require('path');
 module.exports = class extends Generator {
   
   initializing() {
-    this.log(yosay('Welcome to the JetService generator for \nLiferay 7/DXP!'));
+    this.log(yosay('Welcome to the JetService portlet generator for \nLiferay DXP!\nVersion 1.1.0'));
   }
 	
   prompting() {
