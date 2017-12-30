@@ -4,3 +4,6 @@ build
 dist
 *.iml
 .idea
+.classpath
+.project
+.settings

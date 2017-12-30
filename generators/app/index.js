@@ -6,7 +6,7 @@ var path = require('path');
 module.exports = class extends Generator {
   
   initializing() {
-    this.log(yosay('Welcome to the JetService portlet generator for \nLiferay DXP!\nVersion 1.1.0'));
+    this.log(yosay('Welcome to the JetService service generator for \nLiferay DXP!\nVersion 1.2.0'));
   }
 	
   prompting() {
@@ -75,8 +75,10 @@ module.exports = class extends Generator {
         this.destinationPath('settings.gradle'), this.props);
     this.fs.copy(this.templatePath('jaxrs/gradle.properties'),
         this.destinationPath('gradle.properties'));
-    this.fs.copy(this.templatePath('jaxrs/deploy.jar'),
-        this.destinationPath('buildlibs/deploy.jar'));
+    this.fs.copy(this.templatePath('jaxrs/bnd.bnd'),
+        this.destinationPath('bnd.bnd'));
+    this.fs.copy(this.templatePath('jaxrs/buildSrc/**/*'),
+        this.destinationPath('buildSrc'));   
 
     if (this.props.sgdxp) {
       this.fs.copy(this.templatePath('jaxrs/sgdxp/sgdxp.jar'),
