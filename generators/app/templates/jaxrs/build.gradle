@@ -9,6 +9,7 @@ buildscript {
 
 repositories {
 	mavenLocal()
+    mavenCentral()
 	maven {
 		url "http://cdn.repository.liferay.com/nexus/content/groups/public"
 	}
