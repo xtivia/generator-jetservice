@@ -86,6 +86,9 @@ jar {
     }
 }
 
-task deploy doFirst {
-    new Deployer().deploy(jar.archivePath,true)
+task deploy {
+   dependsOn build
+   doFirst {
+       new Deployer().deploy(jar.archivePath, true)
+   }
 }
