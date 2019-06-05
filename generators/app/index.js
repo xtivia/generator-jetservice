@@ -6,7 +6,7 @@ var path = require('path');
 module.exports = class extends Generator {
   
   initializing() {
-    this.log(yosay('Welcome to the JetService service generator for \nLiferay DXP!\nVersion 1.2.0'));
+    this.log(yosay('Welcome to the JetService service generator for \nLiferay DXP!\nVersion 1.3.0'));
   }
 	
   prompting() {
@@ -26,7 +26,7 @@ module.exports = class extends Generator {
           message: 'Enter service ID',
           default: 'org.jetservice.svc'+ randomSuffix.toString(),
           validate : function(input) {
-            if (input.indexOf(' ') != -1) {
+            if (input.indexOf(' ') !== -1) {
               return "Spaces are not permitted in the service id."
             } else return true;
           }
@@ -43,9 +43,9 @@ module.exports = class extends Generator {
           message: 'Enter service URI path',
           default: '/svc'+ randomSuffix.toString(),
           validate : function(input) {
-              if (input.indexOf(' ') != -1) {
+              if (input.indexOf(' ') !== -1) {
                 return "Spaces are not permitted in the service path."
-              } else if (input.indexOf('/') != 0) {
+              } else if (input.indexOf('/') !== 0) {
                 return "Path must begin with a slash, e.g. /org.jetservice.abcd"
               } else return true;
           }
@@ -97,4 +97,4 @@ module.exports = class extends Generator {
     }
   }
   
-}
+};
