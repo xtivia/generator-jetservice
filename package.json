@@ -20,7 +20,7 @@
   "dependencies": {
     "cheerio": "0.20.0",
     "fs-extra": "^0.26.5",
-    "jszip": "^2.5.0",
+    "jszip": "^2.7.0",
     "mkdirp": "0.5.1",
     "properties": "^1.2.1",
     "walk": "^2.3.9",
